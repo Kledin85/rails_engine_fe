@@ -10,4 +10,9 @@ class MerchantService
   def self.response(uri)
     connection.get(uri)
   end
+
+  def self.find_merchant_response(merchant_id)
+    response = connection.get("merchants/#{merchant_id}")
+    parse_response(response)
+  end
 end

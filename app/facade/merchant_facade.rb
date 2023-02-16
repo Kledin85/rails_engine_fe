@@ -2,7 +2,9 @@ class MerchantFacade
   
   def self.find_merchant(merchant_id)
     binding.pry
-    @merchant = Merchant.new(filter_merchants("merchants/#{merchant_id}"))
+    data = MerchantService.find_merchant_response(merchant_id)
+    binding.pry
+    @merchant = Merchant.new(data[:data])
     binding.pry
   end
 
