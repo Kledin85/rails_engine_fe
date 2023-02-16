@@ -6,8 +6,9 @@ class MerchantsController < ApplicationController
   end
 
   def show
-    merchant_response = Faraday.get("http://localhost:3000/api/v1/merchants/#{params[:id]}")
-    @merchant = JSON.parse(merchant_response.body, symbolize_names: true)
+    @merchant = MerchantFacade.find_merchant(params[:id])
+    # merchant_response = Faraday.get("http://localhost:3000/api/v1/merchants/#{params[:id]}")
+    # @merchant = JSON.parse(merchant_response.body, symbolize_names: true)
     items_response = Faraday.get("http://localhost:3000/api/v1/merchants/#{params[:id]}/items")
     @items = JSON.parse(items_response.body, symbolize_names: true)[:data]
   end
